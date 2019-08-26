@@ -1,16 +1,30 @@
 package mainPackage;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class GUI {
+import javax.swing.*;
+
+public class GUI implements ActionListener{
+// Frame Size	
 	private final static int frameX = 640;
 	private final static int frameY = 480;
-	private static JLabel Title1, BankLabel, BetLabel;
+// Generate Frame	
 	private static JFrame Frame = new JFrame("Java Roulette");
+// Create Object to Roulette
+	private Roulette Roulette = new Roulette();
+// Generate Labels	
+	private static JLabel Title1, BankLabel, BetLabel;
+//Generate Buttons	
+	private JButton BetRedBut = new JButton("Bet Red"); // Button Bet Red
+	private JButton BetBlackBut = new JButton("Bet Black"); // Button Bet Black
+	private JButton BetOddBut = new JButton("Bet Odd"); // Button Bet Odd
+	private JButton BetEvenBut = new JButton("Bet Even"); // Button Bet Even
+    private JButton BetNumBut = new JButton("Bet Number"); // Button Bet Number
+    private JTextField NumField=new JFormattedTextField(); // Number Text field
 	
 // Create GUI
-public static void startGUI() {
-	Roulette Roulette = new Roulette(); // Create Object Roulette 
+public void startGUI() {
+		Roulette Roulette = new Roulette(); // Create Object Roulette 
 // Set Frame 	
 		Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Top right X terminates program
 	    Frame.setSize(frameX,frameY); // Set Window Frame
@@ -18,27 +32,25 @@ public static void startGUI() {
 	    Title1 = new JLabel("Welcome to Java Roulette");  // Create a Title label
 	    Title1.setBounds(25,15, 200,30);  // Title Frame size
 // Bank Label Status	    
-	    BankLabel = new JLabel("Current Bank: " + 	Roulette.getBank());  // Create a Bank Label status label
+	    BankLabel = new JLabel("Current Bank: $" + 	Roulette.getBank());  // Create a Bank Label status label
 	    BankLabel.setBounds(475,15, 200,30);  // Bank Label Frame size
 //----------------------------------------------------------------------------------------------
 // Buttons	    
 // Button Bet Red
-	    JButton BetRedBut = new JButton("Bet Red"); // Create button + Name of button
 	    BetRedBut.setBounds(25,55,105,30); // button frame size
+	    BetRedBut.addActionListener(this); // Action Defined
 // Button Bet Black
-	    JButton BetBlackBut = new JButton("Bet Black"); // Create button + Name of button
-	    BetBlackBut.setBounds(25,105,105,30); // button frame size	   
+	    BetBlackBut.setBounds(25,105,105,30); // button frame size
+	    BetBlackBut.addActionListener(this); // Action Defined
 // Button Bet Odd
-	    JButton BetOddBut = new JButton("Bet Odd"); // Create button + Name of button
-	    BetOddBut.setBounds(25,155,105,30); // button frame size	  
+	    BetOddBut.setBounds(25,155,105,30); // button frame size
+	    BetOddBut.addActionListener(this); // Action Defined
 // Button Bet Even
-	    JButton BetEvenBut = new JButton("Bet Even"); // Create button + Name of button
 	    BetEvenBut.setBounds(25,205,105,30); // button frame size	
+	    BetEvenBut.addActionListener(this); // Action Defined
 // Button Bet Number
-	    JButton BetNumBut = new JButton("Bet Number"); // Create button + Name of button
 	    BetNumBut.setBounds(25,255,105,30); // button frame size	
 // Number Text field
-	    JTextField NumField=new JFormattedTextField(); 
 	    NumField.setBounds(155, 262, 30,20);  
 //-----------------------------------------------------------------------------------------------	    
 // Betting 	    
@@ -62,6 +74,29 @@ public static void startGUI() {
 	    Frame.add(NumField); // Number Text Field
 	    Frame.setLayout(null);  // Remove layout and enable free layout
 	    Frame.setVisible(true); // Shows the GUI
+	}
+// Action Triggers
+	public void actionPerformed(ActionEvent event) {
+// Bet Red Trigger		
+		if (event.getSource() == BetRedBut) {
+			System.out.println("You have bet on Red");
+			 Roulette.Red();
+		}
+// Bet Black Trigger		
+		else if (event.getSource() == BetBlackBut) {
+			System.out.println("You have bet on Black");
+			 Roulette.Black();
+		}
+// Bet Odd Trigger		
+		else if (event.getSource() == BetOddBut) {
+			 System.out.println("You have bet on Odd");
+			 Roulette.Odd();
+		}
+// Bet Even Trigger		
+		else if (event.getSource() == BetEvenBut) {
+			System.out.println("You have bet on Even");
+			 Roulette.Even();
+		}
 	}
 }
 
