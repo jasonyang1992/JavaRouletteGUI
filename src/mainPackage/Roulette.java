@@ -2,17 +2,19 @@ package mainPackage;
 
 public class Roulette {
 
-// Bank 
+// Bank Variables
 	private int BankStatement = 10000;
-	private static int CurrentBet;
-// Roulette Number	
+	private int CurrentBet;
+// Roulette Number Variables
 	private static int RouletteNumber;
-// Roulette Colors
+// Roulette Colors Variables
 	private static int RedNum[] = {1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36}; // Numbers that are red
 	private static int BlackNum[] = {2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35};  // Numbers that are black
 	private static int PlaceHolder; // just a place holder
 	private static String RoutletteColor = ""; // Color
+	private boolean WinnerLoser; // Determines win or lose
 	
+// Bank Statement methods	
 	public void setBank(int Bank) {
 		this.BankStatement = Bank;
 	}
@@ -20,11 +22,37 @@ public class Roulette {
 	public int getBank() {
 		return BankStatement;
 	}
+	
+	public int GainBank() {
+		BankStatement = BankStatement + CurrentBet;
+		return BankStatement;
+	}
+	
+	public int LoseBank() {
+		BankStatement = BankStatement - CurrentBet;
+		return BankStatement;
+	}
+// Set Bet	
+	public void setBet(int SettingBet) {
+		this.CurrentBet = SettingBet;
+	}
+// Return Winner Loser Method
+	public boolean WinLose() {
+		return WinnerLoser;
+	}
+// Return the RouletteNumber
+	public int getRouletteNumber() {
+		return RouletteNumber;
+	}
+// Return the color
+	public String getRoutletteColor() {
+		return RoutletteColor;
+	}
+//---------------------------------------------------------------------------------------------	
 // Bet Red
 	public void Red() {
 // Generate Random Number 	
 		RouletteNumber = (int) Math.round(Math.random() * 36);
-		System.out.println(RouletteNumber);
 		// Determine if it is red		
 		for (int iCounter = 0; iCounter < 18; iCounter++) {
 			PlaceHolder = RedNum[iCounter];
@@ -33,12 +61,12 @@ public class Roulette {
 			}
 		}
 		if (RoutletteColor.equals("RED")) {
-			System.out.println("You Win!");
-			System.out.println("Its Red");
+			// color is red
+			WinnerLoser = true;
 		}
 		else {
-			System.out.println("You lose");
-			System.out.println("Its Black");
+			// color is black
+			WinnerLoser = false;
 		}
 		RoutletteColor = "clear"; // Clear variable 
 	}
@@ -46,7 +74,6 @@ public class Roulette {
 	public void Black() {
 // Generate Random Number 	
 		RouletteNumber = (int) Math.round(Math.random() * 36);
-		System.out.println(RouletteNumber);
 		// Determine if it is Black
 		for (int iCounter = 0; iCounter < 18; iCounter++) {
 			PlaceHolder = BlackNum[iCounter];
@@ -54,13 +81,13 @@ public class Roulette {
 				RoutletteColor = "BLACK";	
 			}
 		}
-		if (RoutletteColor.equals("BlACK")) {
-			System.out.println("You Win!");
-			System.out.println("Its Black");
+		if (RoutletteColor.equals("BLACK")) {
+			// Color is black
+			WinnerLoser = true;
 		}
 		else {
-			System.out.println("You lose");
-			System.out.println("Its Red");
+			// color is red
+			WinnerLoser = false;
 		}
 		RoutletteColor = "clear"; // Clear variable 
 	}	
@@ -68,26 +95,24 @@ public class Roulette {
 	public void Odd() {
 // Generate Random Number 	
 		RouletteNumber = (int) Math.round(Math.random() * 36);
-		System.out.println(RouletteNumber);
 // Determine if it is odd or even		
 		if (RouletteNumber % 2 == 0) {
-				System.out.println("You Lose");
+			WinnerLoser = false;
 			}
 		else {
-				System.out.println("You Win!");
+			WinnerLoser = true;
 		}
 	}	
 // Bet Even	
 	public void Even() {
 // Generate Random Number 	
 		RouletteNumber = (int) Math.round(Math.random() * 36);
-		System.out.println(RouletteNumber);
 // Determine if it is odd or even		
 		if (RouletteNumber % 2 == 0) {
-				System.out.println("You Win!");
+			WinnerLoser = true;
 			}
 		else {
-				System.out.println("You Lose");
+			WinnerLoser = false;
 			}
 	}	
 }
