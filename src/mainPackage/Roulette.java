@@ -28,6 +28,11 @@ public class Roulette {
 		return BankStatement;
 	}
 	
+	public int GainBank36T() {
+		BankStatement = BankStatement + CurrentBet*36;
+		return BankStatement;
+	}
+	
 	public int LoseBank() {
 		BankStatement = BankStatement - CurrentBet;
 		return BankStatement;
@@ -114,5 +119,10 @@ public class Roulette {
 		else {
 			WinnerLoser = false;
 			}
-	}	
+	}
+	
+	public void Number() {
+// Generate Random Number 	
+		RouletteNumber = (int) Math.round(Math.random() * 36);
+	}
 }

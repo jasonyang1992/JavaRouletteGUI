@@ -54,6 +54,7 @@ public void startGUI() {
 	    BetEvenBut.addActionListener(this); // Action Defined
 // Button Bet Number
 	    BetNumBut.setBounds(25,255,105,30); // button frame size	
+	    BetNumBut.addActionListener(this);
 // Number Text field
 	    NumField.setBounds(155, 262, 30,20);  
 //-----------------------------------------------------------------------------------------------	    
@@ -184,6 +185,29 @@ public void startGUI() {
 			 StatusBet.setText("Your previous bet was on even");
 			 StatusNumberColor.setText("The number is " + Roulette.getRouletteNumber());
 			 StatusBetField.setText("Your previous bet was $" + Integer.parseInt(BetField.getText()));
+		}
+		else if (event.getSource() == BetNumBut) {
+			Roulette.Number();
+			
+			 try {
+				 Roulette.setBet(Integer.parseInt(BetField.getText()));
+			 }
+			 catch (Exception e) {
+				 
+			 }
+			
+			if (Roulette.getRouletteNumber() == Integer.parseInt(NumField.getText())) {
+				Roulette.GainBank36T();
+				 BankLabel.setText("Current Bank: $" + 	Roulette.getBank());
+				 StatusWinnerLoser.setText("You Win, it is " + Integer.parseInt(NumField.getText()));
+			}
+			else {
+				Roulette.LoseBank();
+				 BankLabel.setText("Current Bank: $" + 	Roulette.getBank());
+				 StatusWinnerLoser.setText("You Lose, it is " + Roulette.getRouletteNumber());
+			}
+			StatusNumberColor.setText("The number is " + Roulette.getRouletteNumber());
+			StatusBetField.setText("Your previous bet was $" + Integer.parseInt(BetField.getText()));
 		}
 	}
 }
