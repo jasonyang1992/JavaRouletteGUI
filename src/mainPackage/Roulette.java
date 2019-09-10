@@ -125,4 +125,5 @@ public class Roulette {
 // Generate Random Number 	
 		RouletteNumber = (int) Math.round(Math.random() * 36);
 	}
+
 }

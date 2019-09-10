@@ -3,8 +3,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-
 import java.awt.Font;
+
 
 public class GUI implements ActionListener{
 // Frame Size	
@@ -24,7 +24,7 @@ public class GUI implements ActionListener{
     private JButton BetNumBut = new JButton("Bet Number"); // Button Bet Number
 // Generate Text Fields    
     private JTextField NumField = new JFormattedTextField(); // Number Text field
-    private JTextField BetField=new JFormattedTextField(); 
+    private JTextField BetField = new JFormattedTextField(); // Betting Text Field
 	
 // Create GUI
 public void startGUI() {
@@ -92,6 +92,7 @@ public void startGUI() {
 	    Frame.setLayout(null);  // Remove layout and enable free layout
 	    Frame.setVisible(true); // Shows the GUI
 	}
+
 // Action Triggers
 	public void actionPerformed(ActionEvent event) {
 // Bet Red Trigger		
@@ -186,6 +187,7 @@ public void startGUI() {
 			 StatusNumberColor.setText("The number is " + Roulette.getRouletteNumber());
 			 StatusBetField.setText("Your previous bet was $" + Integer.parseInt(BetField.getText()));
 		}
+// Bet Number Trigger		
 		else if (event.getSource() == BetNumBut) {
 			Roulette.Number();
 			
